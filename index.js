@@ -3,6 +3,7 @@ const mongoose = require("mongoose")
 const Product = require('./models/product.model.js')                 
 const app = express();
 const productRoute = require('./routes/product.route.js')
+require('dotenv').config();
 
 //middlewares
 app.use(express.json())
@@ -87,8 +88,8 @@ app.post('/api/products', async(req,res) =>{
 // })
 
 
-
-mongoose.connect('mongodb+srv://22ucs113BE:D7yratTDn4zl39DA@backenddb.daiydep.mongodb.net/?retryWrites=true&w=majority&appName=BackendDB')
+const mongoDBKey = process.env.MONGO_DB_KEY;
+mongoose.connect(mongoDBKey)
 .then(() => {console.log("Connected to the DATABASE!!!!")
 
 app.listen(3000, () =>{
